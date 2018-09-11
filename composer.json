@@ -1,9 +1,9 @@
 {
-  "name": "wjminions/omnipay-pingpp",
+  "name": "wjminions/omnipay-panda",
   "type": "library",
-  "description": "Pingpp gateway for Omnipay payment processing library",
+  "description": "Panda gateway for Omnipay payment processing library",
   "keywords": [
-    "pingpp",
+    "panda",
     "gateway",
     "merchant",
     "omnipay",
@@ -11,18 +11,18 @@
     "payment",
     "purchase"
   ],
-  "homepage": "https://github.com/wjminons/omnipay-pingpp",
+  "homepage": "https://github.com/wjminons/omnipay-panda",
   "license": "MIT",
   "authors": [
     {
       "name": "wjminions",
       "email": "wjminions@gmail.com",
-      "homepage": "https://github.com/wjminions/omnipay-pingpp"
+      "homepage": "https://github.com/wjminions/omnipay-panda"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Omnipay\\Pingpp\\": "src/"
+      "Omnipay\\Panda\\": "src/"
     }
   },
   "require": {
