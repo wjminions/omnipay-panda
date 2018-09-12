@@ -44,36 +44,11 @@ class UnityCompletePurchaseRequest extends AbstractUnityRequest
      */
     public function sendData($data)
     {
-//        require dirname(__FILE__) . '/../../../../pingplusplus/Panda-php/init.php';
+        $sign = Helper::sign($data, $this->getkey());
 
-        $headers = \Panda\Util\Util::getRequestHeaders();
-        // 签名在头部信息的 x-pingplusplus-signature 字段
-        $signature = isset($headers['X-Pingplusplus-Signature']) ? $headers['X-Pingplusplus-Signature'] : NULL;
-        // 示例
-        // $signature = 'BX5sToHUzPSJvAfXqhtJicsuPjt3yvq804PguzLnMruCSvZ4C7xYS4trdg1blJPh26eeK/P2QfCCHpWKedsRS3bPKkjAvugnMKs+3Zs1k+PshAiZsET4sWPGNnf1E89Kh7/2XMa1mgbXtHt7zPNC4kamTqUL/QmEVI8LJNq7C9P3LR03kK2szJDhPzkWPgRyY2YpD2eq1aCJm0bkX9mBWTZdSYFhKt3vuM1Qjp5PWXk0tN5h9dNFqpisihK7XboB81poER2SmnZ8PIslzWu2iULM7VWxmEDA70JKBJFweqLCFBHRszA8Nt3AXF0z5qe61oH1oSUmtPwNhdQQ2G5X3g==';
-
-        $result = Helper::verify_signature(file_get_contents('php://input'), $signature, $this->getPublicKeyPath());
-
-        if ($result === 1) {
-            // 验证通过
-            if ($data['type'] == 'Unity.succeeded') {
-                $data['is_paid'] = true;
-            } elseif ($data['type'] == 'refund.succeeded') {
-                $data['is_paid'] = true;
-            } else {
-                $data['is_paid'] = false;
-            }
-
-            http_response_code(200);
-            echo 'success';
-        } elseif ($result === 0) {
-            $data['is_paid'] = false;
-            http_response_code(400);
-            echo 'verification failed';
-        } else {
-            $data['is_paid'] = false;
-            http_response_code(400);
-            echo 'verification error';
+        $data['is_paid'] = false;
+        if ($data['sign'] == $sign && $data['status'] == 'success') {
+            $data['is_paid'] = true;
         }
 
         return $this->response = new UnityCompletePurchaseResponse($this, $data);

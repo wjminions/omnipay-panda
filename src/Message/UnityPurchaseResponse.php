@@ -55,7 +55,7 @@ class UnityPurchaseResponse extends AbstractResponse implements RedirectResponse
 
     public function getRedirectHtml()
     {
-        $action = $this->getRequest()->getEndpoint();
+        $action = $this->getRequest()->getEndpoint('pay');
         $fields = $this->getFormFields();
         $method = $this->getRedirectMethod();
 

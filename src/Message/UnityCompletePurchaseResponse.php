@@ -13,7 +13,7 @@ class UnityCompletePurchaseResponse extends AbstractResponse
 
     public function isPaid()
     {
-        return $this->data['is_paid'] && $this->data['data']['object']['paid'];
+        return $this->data['is_paid'];
     }
 
 
@@ -24,6 +24,6 @@ class UnityCompletePurchaseResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->data['is_paid'] && $this->data['data']['object']['paid'];
+        return $this->data['is_paid'];
     }
 }

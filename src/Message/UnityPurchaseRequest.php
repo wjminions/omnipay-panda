@@ -2,7 +2,6 @@
 
 namespace Omnipay\Panda\Message;
 
-use Guzzle\Http\Message\Header;
 use Omnipay\Common\Message\ResponseInterface;
 use Omnipay\Panda\Helper;
 
@@ -68,12 +67,12 @@ class UnityPurchaseRequest extends AbstractUnityRequest
      */
     public function sendData($data)
     {
-        $data['sign'] = Header::sign($data, $this->getkey());
+        $data['sign'] = Helper::sign($data, $this->getkey());
 
-        if ($this->data['payment_type'] == 'pc_web' || $this->data['payment_type'] == 'mobile_web') {
+        if ($data['payment_type'] == 'pc_web' || $data['payment_type'] == 'mobile_web') {
             $unity = $data;
         } else {
-            $unity = Helper::sendHttpRequest($this->getEndpoint(), $data);
+            $unity = Helper::sendHttpRequest($this->getEndpoint('pay'), $data);
         }
 
         return $this->response = new UnityPurchaseResponse($this, $unity);

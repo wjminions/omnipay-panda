@@ -18,7 +18,7 @@ class UnityGateway extends AbstractGateway
      */
     public function getName()
     {
-        return 'Panda_Unity';
+        return 'Panda Unity';
     }
 
 
@@ -43,6 +43,30 @@ class UnityGateway extends AbstractGateway
     public function getTradeNo()
     {
         return $this->getParameter('trade_no');
+    }
+
+
+    public function setOrderId($value)
+    {
+        return $this->setParameter('order_id', $value);
+    }
+
+
+    public function getOrderId()
+    {
+        return $this->getParameter('order_id');
+    }
+
+
+    public function setRefundAmount($value)
+    {
+        return $this->setParameter('refund_amount', $value);
+    }
+
+
+    public function getRefundAmount()
+    {
+        return $this->getParameter('refund_amount');
     }
 
 

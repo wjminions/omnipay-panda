@@ -11,17 +11,17 @@ use Omnipay\Panda\Helper;
  */
 abstract class AbstractUnityRequest extends AbstractRequest
 {
-    protected $sandboxEndpoint = 'https://127.0.0.4/pay';
+    protected $sandboxEndpoint = 'http://127.0.0.4/';
 
-    protected $productionEndpoint = 'https://pet1718.cn/pay';
+    protected $productionEndpoint = 'https://pet1718.cn/';
 
 
-    public function getEndpoint()
+    public function getEndpoint($method)
     {
         if ($this->getEnvironment() == 'production') {
-            return $this->productionEndpoint;
+            return $this->productionEndpoint . $method;
         } else {
-            return $this->sandboxEndpoint;
+            return $this->sandboxEndpoint . $method;
         }
     }
 
@@ -47,6 +47,30 @@ abstract class AbstractUnityRequest extends AbstractRequest
     public function getTradeNo()
     {
         return $this->getParameter('trade_no');
+    }
+
+
+    public function setOrderId($value)
+    {
+        return $this->setParameter('order_id', $value);
+    }
+
+
+    public function getOrderId()
+    {
+        return $this->getParameter('order_id');
+    }
+
+
+    public function setRefundAmount($value)
+    {
+        return $this->setParameter('refund_amount', $value);
+    }
+
+
+    public function getRefundAmount()
+    {
+        return $this->getParameter('refund_amount');
     }
 
 
