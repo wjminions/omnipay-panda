@@ -11,7 +11,7 @@ use Omnipay\Panda\Helper;
  */
 abstract class AbstractUnityRequest extends AbstractRequest
 {
-    protected $sandboxEndpoint = 'http://127.0.0.4/';
+    protected $sandboxEndpoint = 'https://testpayment.pet1718.com/panda/frontend/web/';
 
     protected $productionEndpoint = 'https://pet1718.cn/';
 
